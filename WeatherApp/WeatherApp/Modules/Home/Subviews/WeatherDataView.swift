@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import RswiftResources
 
-class WeatherDataView: UIView {
+final class WeatherDataView: UIView {
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
