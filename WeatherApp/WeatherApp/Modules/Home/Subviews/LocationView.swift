@@ -40,8 +40,7 @@ final class LocationView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupViews()
-        setupConstarints()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
@@ -50,6 +49,11 @@ final class LocationView: UIView {
     
     @objc func changeLocationButtonTapped() {
         
+    }
+    
+    private func setupUI() {
+        setupViews()
+        setupConstarints()
     }
     
     private func setupViews() {

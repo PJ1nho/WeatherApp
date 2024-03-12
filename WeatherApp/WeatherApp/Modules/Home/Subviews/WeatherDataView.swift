@@ -7,33 +7,20 @@ final class WeatherDataView: UIView {
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.spacing = 10
         return stackView
     }()
     
     private lazy var dateLabel: UILabel = {
         let dateLabel = UILabel()
         dateLabel.font = R.font.overpassRegular(size: 17)
-        dateLabel.textColor = .white
-        dateLabel.textAlignment = .center
-        dateLabel.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-        dateLabel.layer.shadowRadius = 1.0
-        dateLabel.layer.shadowOpacity = 1.0
-        dateLabel.layer.shadowOffset = CGSize(width: -2, height: 2)
-        dateLabel.layer.masksToBounds = false
         dateLabel.text = "Today, 12 September"
         return dateLabel
     }()
     
     private lazy var degreesLabel: UILabel = {
         let degreesLabel = UILabel()
-        degreesLabel.font = R.font.overpassRegular(size: 93)
-        degreesLabel.textColor = .white
-        degreesLabel.textAlignment = .center
-        degreesLabel.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-        degreesLabel.layer.shadowRadius = 7.0
-        degreesLabel.layer.shadowOpacity = 4.0
-        degreesLabel.layer.shadowOffset = CGSize(width: -5, height: 7)
-        degreesLabel.layer.masksToBounds = false
+        degreesLabel.font = R.font.overpassRegular(size: 80)
         degreesLabel.text = "29°"
         return degreesLabel
     }()
@@ -41,13 +28,6 @@ final class WeatherDataView: UIView {
     private lazy var weatherTypeLabel: UILabel = {
         let weatherTypeLabel = UILabel()
         weatherTypeLabel.font = R.font.overpassBold(size: 22)
-        weatherTypeLabel.textColor = .white
-        weatherTypeLabel.textAlignment = .center
-        weatherTypeLabel.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-        weatherTypeLabel.layer.shadowRadius = 1.0
-        weatherTypeLabel.layer.shadowOpacity = 1.0
-        weatherTypeLabel.layer.shadowOffset = CGSize(width: -2, height: 2)
-        weatherTypeLabel.layer.masksToBounds = false
         weatherTypeLabel.text = "Cloudy"
         return weatherTypeLabel
     }()
@@ -55,13 +35,6 @@ final class WeatherDataView: UIView {
     private lazy var windLabel: UILabel = {
         let windLabel = UILabel()
         windLabel.font = R.font.overpassRegular(size: 20)
-        windLabel.textColor = .white
-        windLabel.textAlignment = .center
-        windLabel.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-        windLabel.layer.shadowRadius = 1.0
-        windLabel.layer.shadowOpacity = 1.0
-        windLabel.layer.shadowOffset = CGSize(width: -2, height: 2)
-        windLabel.layer.masksToBounds = false
         windLabel.text = "Wind | 10 km/h"
         return windLabel
     }()
@@ -69,25 +42,35 @@ final class WeatherDataView: UIView {
     private lazy var humLabel: UILabel = {
         let humLabel = UILabel()
         humLabel.font = R.font.overpassRegular(size: 20)
-        humLabel.textColor = .white
-        humLabel.textAlignment = .center
-        humLabel.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-        humLabel.layer.shadowRadius = 1.0
-        humLabel.layer.shadowOpacity = 1.0
-        humLabel.layer.shadowOffset = CGSize(width: -2, height: 2)
-        humLabel.layer.masksToBounds = false
         humLabel.text = "Hum | 54 %"
         return humLabel
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupViews()
-        setupConstraints()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupUI() {
+        setupLabelsShadow()
+        setupViews()
+        setupConstraints()
+    }
+    
+    private func setupLabelsShadow() {
+        [dateLabel, degreesLabel, weatherTypeLabel, windLabel, humLabel].forEach { label in
+            label.textColor = .white
+            label.textAlignment = .center
+            label.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+            label.layer.shadowRadius = 1.0
+            label.layer.shadowOpacity = 1.0
+            label.layer.shadowOffset = CGSize(width: -2, height: 2)
+            label.layer.masksToBounds = false
+        }
     }
     
     private func setupViews() {

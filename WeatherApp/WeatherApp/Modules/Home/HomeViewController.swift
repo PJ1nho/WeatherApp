@@ -11,14 +11,24 @@ class HomeViewController: UIViewController {
         imageView.image = R.image.backgroundVectors()
         return imageView
     }()
+    
+    private lazy var weatherImageView: UIImageView = {
+        let weatherImageView = UIImageView()
+        weatherImageView.image = R.image.weatherIcon()
+        weatherImageView.contentMode = .scaleAspectFit
+        return weatherImageView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+    
+    private func setupUI() {
         setupGradientLayer()
         setupViews()
         setupConstraints()
     }
-    
     
     private func setupGradientLayer() {
         let gradient = CAGradientLayer()
@@ -32,6 +42,7 @@ class HomeViewController: UIViewController {
     
     private func setupViews() {
         view.addSubview(backgroundImageView)
+        view.addSubview(weatherImageView)
         view.addSubview(locationView)
         view.addSubview(weatherDataView)
     }
@@ -48,8 +59,14 @@ class HomeViewController: UIViewController {
             make.height.equalTo(23)
         }
         
+        weatherImageView.snp.makeConstraints { make in
+            make.top.equalTo(locationView.snp.bottom).inset(-30)
+            make.centerX.equalToSuperview()
+            make.height.width.equalTo(200)
+        }
+        
         weatherDataView.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
+            make.top.equalTo(weatherImageView.snp.bottom).inset(-10)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(310)
         }
