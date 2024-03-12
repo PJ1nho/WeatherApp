@@ -3,6 +3,8 @@ import SnapKit
 
 class HomeViewController: UIViewController {
     
+    // MARK: - Private properties
+    
     private let weatherDataView = WeatherDataView()
     private let locationView = LocationView()
     
@@ -18,11 +20,15 @@ class HomeViewController: UIViewController {
         weatherImageView.contentMode = .scaleAspectFit
         return weatherImageView
     }()
+    
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
+    
+    // MARK: - Private Methods
     
     private func setupUI() {
         setupGradientLayer()

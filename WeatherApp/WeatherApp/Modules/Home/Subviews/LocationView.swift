@@ -4,6 +4,8 @@ import SnapKit
 
 final class LocationView: UIView {
     
+    // MARK: - Private properties
+    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -37,6 +39,8 @@ final class LocationView: UIView {
         changeLocationButton.addTarget(self, action: #selector(changeLocationButtonTapped), for: .touchUpInside)
         return changeLocationButton
     }()
+    
+    // MARK: - Init
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,9 +51,13 @@ final class LocationView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Actions
+    
     @objc func changeLocationButtonTapped() {
         
     }
+    
+    // MARK: - Private methods
     
     private func setupUI() {
         setupViews()

@@ -15,7 +15,6 @@
 		E95E44B12B97D2780059D50C /* WeatherApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E95E44AF2B97D2780059D50C /* WeatherApp.xcdatamodeld */; };
 		E95E44B32B97D27A0059D50C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E95E44B22B97D27A0059D50C /* Assets.xcassets */; };
 		E95E44B62B97D27A0059D50C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E95E44B42B97D27A0059D50C /* LaunchScreen.storyboard */; };
-		E9741B2A2B98A11F00FB20F0 /* ExtentionUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9741B292B98A11F00FB20F0 /* ExtentionUIColor.swift */; };
 		E9741B2D2B98A1ED00FB20F0 /* WeatherDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9741B2C2B98A1ED00FB20F0 /* WeatherDataView.swift */; };
 		E9A30C9D2B9FD05F00E1FEA8 /* Overpass-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9A30C9C2B9FD05F00E1FEA8 /* Overpass-Bold.ttf */; };
 		E9A30C9F2B9FD2A800E1FEA8 /* Overpass-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9A30C9E2B9FD2A800E1FEA8 /* Overpass-Regular.ttf */; };
@@ -35,7 +34,6 @@
 		E95E44B22B97D27A0059D50C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E95E44B52B97D27A0059D50C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E95E44B72B97D27A0059D50C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E9741B292B98A11F00FB20F0 /* ExtentionUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtentionUIColor.swift; sourceTree = "<group>"; };
 		E9741B2C2B98A1ED00FB20F0 /* WeatherDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataView.swift; sourceTree = "<group>"; };
 		E9A30C9C2B9FD05F00E1FEA8 /* Overpass-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Overpass-Bold.ttf"; sourceTree = "<group>"; };
 		E9A30C9E2B9FD2A800E1FEA8 /* Overpass-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Overpass-Regular.ttf"; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 		E9741B282B98A10B00FB20F0 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
-				E9741B292B98A11F00FB20F0 /* ExtentionUIColor.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -313,7 +310,6 @@
 				E918C4762BA0626800FF1186 /* LocationView.swift in Sources */,
 				E9F754F12B9E69D40012B1AD /* R.generated.swift in Sources */,
 				E9741B2D2B98A1ED00FB20F0 /* WeatherDataView.swift in Sources */,
-				E9741B2A2B98A11F00FB20F0 /* ExtentionUIColor.swift in Sources */,
 				E95E44AB2B97D2780059D50C /* HomeViewController.swift in Sources */,
 				E95E44A72B97D2780059D50C /* AppDelegate.swift in Sources */,
 				E95E44A92B97D2780059D50C /* SceneDelegate.swift in Sources */,
