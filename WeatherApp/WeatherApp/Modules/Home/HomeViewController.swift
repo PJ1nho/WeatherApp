@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import Alamofire
 
 class HomeViewController: UIViewController {
     
@@ -26,31 +27,24 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        makeRequest(city: "Moscow", apiKey: "a71d347f74fafa9fcd2c403639de58c0")
     }
     
     // MARK: - Private Methods
     
     private func setupUI() {
         setupGradientLayer()
-        setupViews()
+        view.addSubviews([backgroundImageView, weatherImageView, locationView, weatherDataView])
         setupConstraints()
     }
     
     private func setupGradientLayer() {
         let gradient = CAGradientLayer()
         gradient.frame = self.view.bounds
-        gradient.colors = [
-            UIColor(red: 0.416, green: 0.733, blue: 0.867, alpha: 1).cgColor,
-            UIColor(red: 0.365, green: 0.573, blue: 0.957, alpha: 1).cgColor
-        ]
+        guard let firstColor = R.color.gradientFirst()?.cgColor,
+              let secondColor = R.color.gradientSecond()?.cgColor else { return }
+        gradient.colors = [firstColor, secondColor]
         view.layer.addSublayer(gradient)
-    }
-    
-    private func setupViews() {
-        view.addSubview(backgroundImageView)
-        view.addSubview(weatherImageView)
-        view.addSubview(locationView)
-        view.addSubview(weatherDataView)
     }
     
     private func setupConstraints() {
@@ -75,6 +69,18 @@ class HomeViewController: UIViewController {
             make.top.equalTo(weatherImageView.snp.bottom).inset(-10)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(310)
+        }
+    }
+    
+    private func makeRequest(city: String, apiKey: String) {
+        AF.request("https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(apiKey)", method: .get).responseDecodable(of: WeatherData.self) { [weak self] response in
+            switch response.result {
+            case .success(let success):
+                self?.weatherDataView.configure(model: success)
+                self?.locationView.configure(city: success.name)
+            case .failure(let error):
+                print(error.errorDescription)
+            }
         }
     }
 }

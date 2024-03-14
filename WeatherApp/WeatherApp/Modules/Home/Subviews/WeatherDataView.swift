@@ -16,14 +16,12 @@ final class WeatherDataView: UIView {
     private lazy var dateLabel: UILabel = {
         let dateLabel = UILabel()
         dateLabel.font = R.font.overpassRegular(size: 17)
-        dateLabel.text = "Today, 12 September"
         return dateLabel
     }()
     
     private lazy var degreesLabel: UILabel = {
         let degreesLabel = UILabel()
         degreesLabel.font = R.font.overpassRegular(size: 80)
-        degreesLabel.text = "29°"
         return degreesLabel
     }()
     
@@ -37,14 +35,12 @@ final class WeatherDataView: UIView {
     private lazy var windLabel: UILabel = {
         let windLabel = UILabel()
         windLabel.font = R.font.overpassRegular(size: 20)
-        windLabel.text = "Wind | 10 km/h"
         return windLabel
     }()
     
     private lazy var humLabel: UILabel = {
         let humLabel = UILabel()
         humLabel.font = R.font.overpassRegular(size: 20)
-        humLabel.text = "Hum | 54 %"
         return humLabel
     }()
     
@@ -71,7 +67,7 @@ final class WeatherDataView: UIView {
         [dateLabel, degreesLabel, weatherTypeLabel, windLabel, humLabel].forEach { label in
             label.textColor = .white
             label.textAlignment = .center
-            label.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+            label.layer.shadowColor = R.color.textShadow()?.cgColor
             label.layer.shadowRadius = 1.0
             label.layer.shadowOpacity = 1.0
             label.layer.shadowOffset = CGSize(width: -2, height: 2)
@@ -80,11 +76,11 @@ final class WeatherDataView: UIView {
     }
     
     private func setupViews() {
-        backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3)
+        backgroundColor = R.color.weatherDataBackground()
         layer.borderWidth = 1.85
-        layer.borderColor = UIColor(red: 0.753, green: 0.827, blue: 0.89, alpha: 1).cgColor
+        layer.borderColor = R.color.weatherDataBorder()?.cgColor
         layer.cornerRadius = 30
-        addSubview(stackView)
+        addSubviews([stackView])
         stackView.addArrangedSubview(dateLabel)
         stackView.addArrangedSubview(degreesLabel)
         stackView.addArrangedSubview(weatherTypeLabel)
@@ -116,5 +112,15 @@ final class WeatherDataView: UIView {
         humLabel.snp.makeConstraints { make in
             make.height.equalTo(30)
         }
+    }
+    
+    func configure(model: WeatherData) {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d"
+        dateLabel.text = "Today, \(dateFormatter.string(from: date))"
+        degreesLabel.text = "\(Int(model.main.temp - 270))°"
+        windLabel.text = "Wind | \(model.wind.speed) km/h"
+        humLabel.text = "Hum | \(model.main.humidity) %"
     }
 }

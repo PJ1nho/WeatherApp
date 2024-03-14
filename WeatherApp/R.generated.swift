@@ -46,12 +46,27 @@ struct _R {
     let developmentRegion = "en"
   }
 
-  /// This `_R.color` struct is generated, and contains static references to 1 colors.
+  /// This `_R.color` struct is generated, and contains static references to 6 colors.
   struct color {
     let bundle: Foundation.Bundle
 
     /// Color `AccentColor`.
     var accentColor: RswiftResources.ColorResource { .init(name: "AccentColor", path: [], bundle: bundle) }
+
+    /// Color `gradientFirst`.
+    var gradientFirst: RswiftResources.ColorResource { .init(name: "gradientFirst", path: [], bundle: bundle) }
+
+    /// Color `gradientSecond`.
+    var gradientSecond: RswiftResources.ColorResource { .init(name: "gradientSecond", path: [], bundle: bundle) }
+
+    /// Color `textShadow`.
+    var textShadow: RswiftResources.ColorResource { .init(name: "textShadow", path: [], bundle: bundle) }
+
+    /// Color `weatherDataBackground`.
+    var weatherDataBackground: RswiftResources.ColorResource { .init(name: "weatherDataBackground", path: [], bundle: bundle) }
+
+    /// Color `weatherDataBorder`.
+    var weatherDataBorder: RswiftResources.ColorResource { .init(name: "weatherDataBorder", path: [], bundle: bundle) }
   }
 
   /// This `_R.image` struct is generated, and contains static references to 6 images.

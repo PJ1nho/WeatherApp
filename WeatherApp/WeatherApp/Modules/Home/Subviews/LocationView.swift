@@ -23,13 +23,12 @@ final class LocationView: UIView {
         locationLabel.font = R.font.overpassBold(size: 23)
         locationLabel.textColor = .white
         locationLabel.textAlignment = .left
-        locationLabel.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+        locationLabel.layer.shadowColor = R.color.textShadow()?.cgColor
         locationLabel.layer.shadowRadius = 1.0
         locationLabel.layer.shadowOpacity = 1.0
         locationLabel.layer.shadowOffset = CGSize(width: -2, height: 2)
         locationLabel.layer.masksToBounds = false
         locationLabel.textAlignment = .center
-        locationLabel.text = "Surabaya"
         return locationLabel
     }()
     
@@ -65,7 +64,7 @@ final class LocationView: UIView {
     }
     
     private func setupViews() {
-        addSubview(stackView)
+        addSubviews([stackView])
         stackView.addArrangedSubview(locationImageView)
         stackView.addArrangedSubview(locationLabel)
         stackView.addArrangedSubview(changeLocationButton)
@@ -79,5 +78,9 @@ final class LocationView: UIView {
         locationImageView.snp.makeConstraints { make in
             make.width.equalTo(23)
         }
+    }
+    
+    func configure(city: String) {
+        locationLabel.text = city
     }
 }

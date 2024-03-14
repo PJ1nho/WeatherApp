@@ -16,6 +16,10 @@
 		E95E44B32B97D27A0059D50C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E95E44B22B97D27A0059D50C /* Assets.xcassets */; };
 		E95E44B62B97D27A0059D50C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E95E44B42B97D27A0059D50C /* LaunchScreen.storyboard */; };
 		E9741B2D2B98A1ED00FB20F0 /* WeatherDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9741B2C2B98A1ED00FB20F0 /* WeatherDataView.swift */; };
+		E995CD9A2BA18F2600E6F6E7 /* Extention+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E995CD992BA18F2600E6F6E7 /* Extention+UIView.swift */; };
+		E995CD9D2BA245F400E6F6E7 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E995CD9C2BA245F400E6F6E7 /* WeatherData.swift */; };
+		E995CD9F2BA26F7700E6F6E7 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E995CD9E2BA26F7700E6F6E7 /* Main.swift */; };
+		E995CDA12BA2700A00E6F6E7 /* Wind.swift in Sources */ = {isa = PBXBuildFile; fileRef = E995CDA02BA2700A00E6F6E7 /* Wind.swift */; };
 		E9A30C9D2B9FD05F00E1FEA8 /* Overpass-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9A30C9C2B9FD05F00E1FEA8 /* Overpass-Bold.ttf */; };
 		E9A30C9F2B9FD2A800E1FEA8 /* Overpass-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9A30C9E2B9FD2A800E1FEA8 /* Overpass-Regular.ttf */; };
 		E9F754F12B9E69D40012B1AD /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F754F02B9E69D40012B1AD /* R.generated.swift */; };
@@ -35,6 +39,10 @@
 		E95E44B52B97D27A0059D50C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E95E44B72B97D27A0059D50C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9741B2C2B98A1ED00FB20F0 /* WeatherDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataView.swift; sourceTree = "<group>"; };
+		E995CD992BA18F2600E6F6E7 /* Extention+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention+UIView.swift"; sourceTree = "<group>"; };
+		E995CD9C2BA245F400E6F6E7 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		E995CD9E2BA26F7700E6F6E7 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		E995CDA02BA2700A00E6F6E7 /* Wind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wind.swift; sourceTree = "<group>"; };
 		E9A30C9C2B9FD05F00E1FEA8 /* Overpass-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Overpass-Bold.ttf"; sourceTree = "<group>"; };
 		E9A30C9E2B9FD2A800E1FEA8 /* Overpass-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Overpass-Regular.ttf"; sourceTree = "<group>"; };
 		E9F754F02B9E69D40012B1AD /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
@@ -63,6 +71,9 @@
 		E918C4742BA0607400FF1186 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E995CD9C2BA245F400E6F6E7 /* WeatherData.swift */,
+				E995CD9E2BA26F7700E6F6E7 /* Main.swift */,
+				E995CDA02BA2700A00E6F6E7 /* Wind.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -148,6 +159,7 @@
 		E9741B282B98A10B00FB20F0 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				E995CD992BA18F2600E6F6E7 /* Extention+UIView.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -306,12 +318,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E995CD9F2BA26F7700E6F6E7 /* Main.swift in Sources */,
 				E95E44B12B97D2780059D50C /* WeatherApp.xcdatamodeld in Sources */,
 				E918C4762BA0626800FF1186 /* LocationView.swift in Sources */,
 				E9F754F12B9E69D40012B1AD /* R.generated.swift in Sources */,
+				E995CDA12BA2700A00E6F6E7 /* Wind.swift in Sources */,
+				E995CD9A2BA18F2600E6F6E7 /* Extention+UIView.swift in Sources */,
 				E9741B2D2B98A1ED00FB20F0 /* WeatherDataView.swift in Sources */,
 				E95E44AB2B97D2780059D50C /* HomeViewController.swift in Sources */,
 				E95E44A72B97D2780059D50C /* AppDelegate.swift in Sources */,
+				E995CD9D2BA245F400E6F6E7 /* WeatherData.swift in Sources */,
 				E95E44A92B97D2780059D50C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
