@@ -64,7 +64,7 @@ final class LocationView: UIView {
     }
     
     private func setupViews() {
-        addSubviews([stackView])
+        addSubview(stackView)
         stackView.addArrangedSubview(locationImageView)
         stackView.addArrangedSubview(locationLabel)
         stackView.addArrangedSubview(changeLocationButton)

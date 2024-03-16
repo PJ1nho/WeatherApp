@@ -27,7 +27,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        makeRequest(city: "Moscow", apiKey: "a71d347f74fafa9fcd2c403639de58c0")
+        fetchWeather()
     }
     
     // MARK: - Private Methods
@@ -72,14 +72,14 @@ class HomeViewController: UIViewController {
         }
     }
     
-    private func makeRequest(city: String, apiKey: String) {
-        AF.request("https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(apiKey)", method: .get).responseDecodable(of: WeatherData.self) { [weak self] response in
-            switch response.result {
-            case .success(let success):
-                self?.weatherDataView.configure(model: success)
-                self?.locationView.configure(city: success.name)
+    private func fetchWeather() {
+        NetworkService.shared.fetchWeather(city: "Minsk") { [weak self] result in
+            switch result {
+            case .success(let weatherData):
+                self?.weatherDataView.configure(model: weatherData)
+                self?.locationView.configure(city: weatherData.name)
             case .failure(let error):
-                print(error.errorDescription)
+                print(error.localizedDescription)
             }
         }
     }

@@ -80,7 +80,7 @@ final class WeatherDataView: UIView {
         layer.borderWidth = 1.85
         layer.borderColor = R.color.weatherDataBorder()?.cgColor
         layer.cornerRadius = 30
-        addSubviews([stackView])
+        addSubview(stackView)
         stackView.addArrangedSubview(dateLabel)
         stackView.addArrangedSubview(degreesLabel)
         stackView.addArrangedSubview(weatherTypeLabel)
@@ -119,7 +119,8 @@ final class WeatherDataView: UIView {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d"
         dateLabel.text = "Today, \(dateFormatter.string(from: date))"
-        degreesLabel.text = "\(Int(model.main.temp - 270))°"
+        degreesLabel.text = "\(Int(model.main.temp - 273))°"
+        weatherTypeLabel.text = model.weather.first?.main
         windLabel.text = "Wind | \(model.wind.speed) km/h"
         humLabel.text = "Hum | \(model.main.humidity) %"
     }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3827A611DB7A7ECAC799AC17 /* Pods_WeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD2A5C4233477A4847921A4 /* Pods_WeatherApp.framework */; };
+		E902F6AD2BA5E5C800D1CAC5 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = E902F6AC2BA5E5C800D1CAC5 /* Weather.swift */; };
+		E916DE162BA35C1B00A16E77 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E916DE152BA35C1B00A16E77 /* NetworkService.swift */; };
 		E918C4762BA0626800FF1186 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E918C4752BA0626800FF1186 /* LocationView.swift */; };
 		E95E44A72B97D2780059D50C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95E44A62B97D2780059D50C /* AppDelegate.swift */; };
 		E95E44A92B97D2780059D50C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95E44A82B97D2780059D50C /* SceneDelegate.swift */; };
@@ -29,6 +31,8 @@
 		7428643B4B646B43E722DB26 /* Pods-WeatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.debug.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9BA8E7F0760F3454BF4FF4E5 /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
 		ABD2A5C4233477A4847921A4 /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E902F6AC2BA5E5C800D1CAC5 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		E916DE152BA35C1B00A16E77 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		E918C4752BA0626800FF1186 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		E95E44A32B97D2780059D50C /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E95E44A62B97D2780059D50C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,12 +72,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E916DE142BA35C0E00A16E77 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E916DE152BA35C1B00A16E77 /* NetworkService.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		E918C4742BA0607400FF1186 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				E995CD9C2BA245F400E6F6E7 /* WeatherData.swift */,
 				E995CD9E2BA26F7700E6F6E7 /* Main.swift */,
 				E995CDA02BA2700A00E6F6E7 /* Wind.swift */,
+				E902F6AC2BA5E5C800D1CAC5 /* Weather.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -99,6 +112,7 @@
 		E95E44A52B97D2780059D50C /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				E916DE142BA35C0E00A16E77 /* Helpers */,
 				E9741B282B98A10B00FB20F0 /* Extentions */,
 				E95E44BE2B97D2E10059D50C /* Modules */,
 				E95E44BD2B97D2A00059D50C /* Application */,
@@ -326,8 +340,10 @@
 				E995CD9A2BA18F2600E6F6E7 /* Extention+UIView.swift in Sources */,
 				E9741B2D2B98A1ED00FB20F0 /* WeatherDataView.swift in Sources */,
 				E95E44AB2B97D2780059D50C /* HomeViewController.swift in Sources */,
+				E902F6AD2BA5E5C800D1CAC5 /* Weather.swift in Sources */,
 				E95E44A72B97D2780059D50C /* AppDelegate.swift in Sources */,
 				E995CD9D2BA245F400E6F6E7 /* WeatherData.swift in Sources */,
+				E916DE162BA35C1B00A16E77 /* NetworkService.swift in Sources */,
 				E95E44A92B97D2780059D50C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
