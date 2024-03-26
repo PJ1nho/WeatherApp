@@ -2,6 +2,10 @@ import UIKit
 import RswiftResources
 import SnapKit
 
+protocol LocationViewDelegate: AnyObject {
+    func changeLocationButtonTapped()
+}
+
 final class LocationView: UIView {
     
     // MARK: - Private properties
@@ -39,6 +43,8 @@ final class LocationView: UIView {
         return changeLocationButton
     }()
     
+    weak var delegate: LocationViewDelegate?
+    
     // MARK: - Init
 
     override init(frame: CGRect) {
@@ -53,30 +59,32 @@ final class LocationView: UIView {
     // MARK: - Actions
     
     @objc func changeLocationButtonTapped() {
-        
+        delegate?.changeLocationButtonTapped()
     }
     
     // MARK: - Private methods
     
     private func setupUI() {
         setupViews()
-        setupConstarints()
+        setupConstraints()
     }
     
     private func setupViews() {
-        addSubview(stackView)
-        stackView.addArrangedSubview(locationImageView)
+        addSubviews([locationImageView, stackView])
         stackView.addArrangedSubview(locationLabel)
         stackView.addArrangedSubview(changeLocationButton)
     }
     
-    private func setupConstarints() {
-        stackView.snp.makeConstraints { make in
-            make.leading.top.trailing.bottom.equalToSuperview()
+    private func setupConstraints() {
+        locationImageView.snp.makeConstraints { make in
+            make.bottom.equalTo(-5)
+            make.top.leading.equalToSuperview()
+            make.width.equalTo(18)
         }
         
-        locationImageView.snp.makeConstraints { make in
-            make.width.equalTo(23)
+        stackView.snp.makeConstraints { make in
+            make.leading.equalTo(locationImageView.snp.trailing)
+            make.top.trailing.bottom.equalToSuperview()
         }
     }
     

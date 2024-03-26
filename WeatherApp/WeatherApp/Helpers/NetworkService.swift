@@ -4,10 +4,12 @@ import Alamofire
 final class NetworkService {
     
     static let shared = NetworkService()
-    static let apiKey = "a71d347f74fafa9fcd2c403639de58c0"
+    private let apiKey = "a71d347f74fafa9fcd2c403639de58c0"
+    
+    private init() { }
     
     func fetchWeather(city: String, _ completion: @escaping ((Result<WeatherData, Error>) -> Void)) {
-        AF.request("https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(NetworkService.apiKey)",
+        AF.request("https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(apiKey)",
                    method: .get).responseDecodable(of: WeatherData.self) { response in
             switch response.result {
             case .success(let success):

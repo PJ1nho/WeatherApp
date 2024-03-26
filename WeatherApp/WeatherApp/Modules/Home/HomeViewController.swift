@@ -2,12 +2,13 @@ import UIKit
 import SnapKit
 import Alamofire
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     
     // MARK: - Private properties
     
     private let weatherDataView = WeatherDataView()
     private let locationView = LocationView()
+    let locationVC = LocationListViewController()
     
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -27,7 +28,9 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        fetchWeather()
+        fetchWeather(city: "Москва")
+        locationView.delegate = self
+        locationVC.delegate = self
     }
     
     // MARK: - Private Methods
@@ -72,8 +75,8 @@ class HomeViewController: UIViewController {
         }
     }
     
-    private func fetchWeather() {
-        NetworkService.shared.fetchWeather(city: "Minsk") { [weak self] result in
+    private func fetchWeather(city: String) {
+        NetworkService.shared.fetchWeather(city: city) { [weak self] result in
             switch result {
             case .success(let weatherData):
                 self?.weatherDataView.configure(model: weatherData)
@@ -85,3 +88,14 @@ class HomeViewController: UIViewController {
     }
 }
 
+extension HomeViewController: LocationViewDelegate {
+    func changeLocationButtonTapped() {
+        present(locationVC, animated: true)
+    }
+}
+
+extension HomeViewController: LocationListViewControllerDelegate {
+    func transferCityName(city: String) {
+        fetchWeather(city: city)
+    }
+}
