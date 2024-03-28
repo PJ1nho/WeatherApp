@@ -56,7 +56,7 @@ extension LocationsListView: UICollectionViewDelegate, UICollectionViewDataSourc
         cityCell?.layer.borderWidth = 1
         cityCell?.layer.borderColor = R.color.locationListTextColor()?.cgColor
         cityCell?.cityLabel.textColor = R.color.locationListTextColor()
-        cityCell?.fillCityLabel(city: cityItems[indexPath.row])
+        cityCell?.configure(city: cityItems[indexPath.row])
         return cityCell ?? UICollectionViewCell()
     }
     

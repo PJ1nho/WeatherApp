@@ -32,8 +32,7 @@ class CityCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func fillCityLabel(city: String) {
+    func configure(city: String) {
         cityLabel.text = city
     }
-    
 }

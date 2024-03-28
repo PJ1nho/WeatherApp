@@ -8,7 +8,7 @@ final class HomeViewController: UIViewController {
     
     private let weatherDataView = WeatherDataView()
     private let locationView = LocationView()
-    let locationVC = LocationListViewController()
+    private let locationVC = LocationListViewController()
     
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -90,6 +90,9 @@ final class HomeViewController: UIViewController {
 
 extension HomeViewController: LocationViewDelegate {
     func changeLocationButtonTapped() {
+        if let presentationController = locationVC.presentationController as? UISheetPresentationController {
+            presentationController.detents = [.medium()]
+        }
         present(locationVC, animated: true)
     }
 }
