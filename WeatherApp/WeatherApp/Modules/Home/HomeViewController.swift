@@ -57,8 +57,8 @@ final class HomeViewController: UIViewController {
         
         locationView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(25)
-            make.leading.equalToSuperview().inset(25)
-            make.trailing.equalToSuperview().inset(200)
+            make.leading.trailing.equalToSuperview().inset(25)
+//            make.trailing.equalToSuperview().inset(200)
             make.height.equalTo(23)
         }
         
@@ -90,9 +90,6 @@ final class HomeViewController: UIViewController {
 
 extension HomeViewController: LocationViewDelegate {
     func changeLocationButtonTapped() {
-        if let presentationController = locationVC.presentationController as? UISheetPresentationController {
-            presentationController.detents = [.medium()]
-        }
         present(locationVC, animated: true)
     }
 }
