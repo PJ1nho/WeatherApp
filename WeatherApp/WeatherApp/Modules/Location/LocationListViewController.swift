@@ -18,6 +18,11 @@ final class LocationListViewController: UIViewController {
         locationListView.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        locationListView.getCityHistory()
+    }
+    
     private func setupUI() {
         setupGradientLayer()
         view.addSubview(searchCityView)

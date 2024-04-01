@@ -6,7 +6,7 @@ protocol LocationsListViewDelegate: AnyObject {
 
 final class LocationsListView: UIView {
     
-    private var cityItems = [String]()
+    private var cityItems = [CityHistory]()
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -45,7 +45,11 @@ final class LocationsListView: UIView {
     }
     
     func addCityItem(city: String) {
-        cityItems.append(city)
+        StorageService.shared.saveCityName(cityName: city)
+    }
+    
+    func getCityHistory() {
+        cityItems = StorageService.shared.getCityHistory()
         collectionView.reloadData()
     }
 }
@@ -57,11 +61,13 @@ extension LocationsListView: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cityCell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCollectionViewCell.cityCellIdentifier, for: indexPath) as? CityCollectionViewCell
+        cityCell?.delegate = self
+        cityCell?.index = indexPath.row
         cityCell?.backgroundColor = .white
         cityCell?.layer.cornerRadius = 20
         cityCell?.layer.borderWidth = 1
         cityCell?.layer.borderColor = R.color.locationListTextColor()?.cgColor
-        cityCell?.configure(city: cityItems[indexPath.row])
+        cityCell?.configure(city: cityItems[indexPath.row].cityName ?? "")
         return cityCell ?? UICollectionViewCell()
     }
     
@@ -75,3 +81,14 @@ extension LocationsListView: UICollectionViewDelegate, UICollectionViewDataSourc
         delegate?.transferCityName(cityName: cityName)
     }
 }
+
+extension LocationsListView: CityCollectionViewCellDelegate {
+    func transferCellIndex(index: Int?) {
+        guard let index else { return }
+        StorageService.shared.deleteCity(index: index)
+        getCityHistory()
+        collectionView.reloadData()
+    }
+}
+
+
