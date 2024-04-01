@@ -1,5 +1,9 @@
 import UIKit
 
+protocol LocationsListViewDelegate: AnyObject {
+    func transferCityName(cityName: String?)
+}
+
 final class LocationsListView: UIView {
     
     private var cityItems = [String]()
@@ -16,6 +20,8 @@ final class LocationsListView: UIView {
         collectionView.register(CityCollectionViewCell.self, forCellWithReuseIdentifier: CityCollectionViewCell.cityCellIdentifier)
         return collectionView
     }()
+    
+    weak var delegate: LocationsListViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,8 +44,8 @@ final class LocationsListView: UIView {
         }
     }
     
-    func fillCityItems(cities: [String]) {
-        cityItems = cities
+    func addCityItem(city: String) {
+        cityItems.append(city)
         collectionView.reloadData()
     }
 }
@@ -55,12 +61,17 @@ extension LocationsListView: UICollectionViewDelegate, UICollectionViewDataSourc
         cityCell?.layer.cornerRadius = 20
         cityCell?.layer.borderWidth = 1
         cityCell?.layer.borderColor = R.color.locationListTextColor()?.cgColor
-        cityCell?.cityLabel.textColor = R.color.locationListTextColor()
         cityCell?.configure(city: cityItems[indexPath.row])
         return cityCell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width, height: 70)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cityCell = collectionView.cellForItem(at: indexPath) as? CityCollectionViewCell
+        let cityName = cityCell?.getCityName()
+        delegate?.transferCityName(cityName: cityName)
     }
 }

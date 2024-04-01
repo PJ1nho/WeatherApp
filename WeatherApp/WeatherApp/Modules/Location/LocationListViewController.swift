@@ -15,6 +15,7 @@ final class LocationListViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         searchCityView.delegate = self
+        locationListView.delegate = self
     }
     
     private func setupUI() {
@@ -47,8 +48,17 @@ final class LocationListViewController: UIViewController {
 }
 
 extension LocationListViewController: SearchCityViewDelegate {
-    func transferCityName(city: String) {
-        delegate?.transferCityName(city: city)
+    func transferCityName(cityName: String) {
+        delegate?.transferCityName(city: cityName)
+        locationListView.addCityItem(city: cityName)
+        dismiss(animated: true)
+    }
+}
+
+extension LocationListViewController: LocationsListViewDelegate {
+    func transferCityName(cityName: String?) {
+        guard let cityName else { return }
+        delegate?.transferCityName(city: cityName)
         dismiss(animated: true)
     }
 }

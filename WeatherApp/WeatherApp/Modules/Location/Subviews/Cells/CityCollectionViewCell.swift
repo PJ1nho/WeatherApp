@@ -5,8 +5,15 @@ class CityCollectionViewCell: UICollectionViewCell {
     
     static let cityCellIdentifier = "CityCell"
     
-    lazy var cityLabel: UILabel = {
+    private lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = R.image.lastLocation()
+        return imageView
+    }()
+    
+    private lazy var cityLabel: UILabel = {
         let cityLabel = UILabel()
+        cityLabel.textColor = R.color.locationListTextColor()
         cityLabel.font = R.font.overpassBold(size: 17)
         return cityLabel
     }()
@@ -22,17 +29,29 @@ class CityCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupUI() {
-        addSubview(cityLabel)
+        addSubviews([imageView, cityLabel])
         setupConstraints()
     }
     
     private func setupConstraints() {
+        imageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(30)
+            make.centerY.equalToSuperview()
+            make.width.height.equalTo(20)
+        }
+        
         cityLabel.snp.makeConstraints { make in
-            make.leading.top.trailing.bottom.equalToSuperview().inset(20)
+            make.leading.equalTo(imageView.snp.trailing).inset(-15)
+            make.top.trailing.bottom.equalToSuperview().inset(20)
         }
     }
     
     func configure(city: String) {
         cityLabel.text = city
+    }
+    
+    func getCityName() -> String? {
+        guard let cityName = cityLabel.text else { return nil }
+        return cityName
     }
 }

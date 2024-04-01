@@ -86,6 +86,10 @@ final class LocationView: UIView {
             make.leading.equalTo(locationImageView.snp.trailing)
             make.top.trailing.bottom.equalToSuperview()
         }
+        
+        changeLocationButton.snp.makeConstraints { make in
+            make.width.equalTo(20)
+        }
     }
     
     func configure(city: String) {
