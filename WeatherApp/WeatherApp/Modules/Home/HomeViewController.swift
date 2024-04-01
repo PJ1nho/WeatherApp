@@ -9,6 +9,7 @@ final class HomeViewController: UIViewController {
     private let weatherDataView = WeatherDataView()
     private let locationView = LocationView()
     private let locationVC = LocationListViewController()
+    private let lastCity = UserDefaults.standard.string(forKey: "lastCity")
     
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -28,7 +29,7 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        fetchWeather(city: "Москва")
+        fetchStartWeather()
         locationView.delegate = self
         locationVC.delegate = self
     }
@@ -85,6 +86,18 @@ final class HomeViewController: UIViewController {
             }
         }
     }
+    
+    private func saveLastCity(city: String) {
+        UserDefaults.standard.setValue(city, forKey: "lastCity")
+    }
+    
+    private func fetchStartWeather() {
+        if let lastCity {
+            fetchWeather(city: lastCity)
+        } else {
+            fetchWeather(city: "Moscow")
+        }
+    }
 }
 
 extension HomeViewController: LocationViewDelegate {
@@ -96,5 +109,6 @@ extension HomeViewController: LocationViewDelegate {
 extension HomeViewController: LocationListViewControllerDelegate {
     func transferCityName(city: String) {
         fetchWeather(city: city)
+        saveLastCity(city: city)
     }
 }

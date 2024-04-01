@@ -28,6 +28,5 @@ class StorageService {
             viewContext.delete(cityHistoryItems[index])
         }
         try? viewContext.save()
-        
     }
 }

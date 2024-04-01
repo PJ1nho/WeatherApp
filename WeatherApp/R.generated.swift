@@ -166,9 +166,12 @@ struct _R {
     }
   }
 
-  /// This `_R.file` struct is generated, and contains static references to 2 resource files.
+  /// This `_R.file` struct is generated, and contains static references to 3 resource files.
   struct file {
     let bundle: Foundation.Bundle
+
+    /// Resource file `.swiftlint.yml`.
+    var swiftlintYml: RswiftResources.FileResource { .init(name: ".swiftlint", pathExtension: "yml", bundle: bundle, locale: LocaleReference.none) }
 
     /// Resource file `Overpass-Bold.ttf`.
     var overpassBoldTtf: RswiftResources.FileResource { .init(name: "Overpass-Bold", pathExtension: "ttf", bundle: bundle, locale: LocaleReference.none) }
