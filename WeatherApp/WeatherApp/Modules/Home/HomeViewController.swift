@@ -9,7 +9,9 @@ final class HomeViewController: UIViewController {
     private let weatherDataView = WeatherDataView()
     private let locationView = LocationView()
     private let locationVC = LocationListViewController()
+    private let daysCollectionView = DaysCollectionView()
     private let lastCity = UserDefaults.standard.string(forKey: "lastCity")
+    private let dateFormatter = DateFormatter()
     
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -38,7 +40,7 @@ final class HomeViewController: UIViewController {
     
     private func setupUI() {
         setupGradientLayer()
-        view.addSubviews([backgroundImageView, weatherImageView, locationView, weatherDataView])
+        view.addSubviews([backgroundImageView, weatherImageView, locationView, weatherDataView, daysCollectionView])
         setupConstraints()
     }
     
@@ -73,6 +75,12 @@ final class HomeViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(310)
         }
+        
+        daysCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(weatherDataView.snp.bottom).inset(-20)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(100)
+        }
     }
     
     private func fetchWeather(city: String) {
@@ -87,6 +95,21 @@ final class HomeViewController: UIViewController {
         }
     }
     
+    private func fetchWeatherDays(city: String) {
+        NetworkService.shared.fetchWeatherDay(city: city) { [weak self] result in
+            switch result {
+            case .success(let list):
+                self?.daysCollectionView.configure(days: list.list.map {
+                    DailyModel(date: self?.setupDate(date: $0.dateText) ?? "", 
+                               time: self?.setupTime(date: $0.dateText) ?? "",
+                               temp: "\(Int($0.main.temp) - 270)")
+                })
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     private func saveLastCity(city: String) {
         UserDefaults.standard.setValue(city, forKey: "lastCity")
     }
@@ -94,9 +117,27 @@ final class HomeViewController: UIViewController {
     private func fetchStartWeather() {
         if let lastCity {
             fetchWeather(city: lastCity)
+            fetchWeatherDays(city: lastCity)
         } else {
             fetchWeather(city: "Moscow")
+            fetchWeatherDays(city: "Moscow")
         }
+    }
+    
+    private func setupDate(date: String) -> String {
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        guard let date = dateFormatter.date(from: date) else { return "" }
+        dateFormatter.dateFormat = "dd.MM.yy"
+        let dateString = dateFormatter.string(from: date)
+        return dateString
+    }
+    
+    private func setupTime(date: String) -> String {
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        guard let date = dateFormatter.date(from: date) else { return "" }
+        dateFormatter.dateFormat = "HH:mm"
+        let timeString = dateFormatter.string(from: date)
+        return timeString
     }
 }
 
@@ -109,6 +150,7 @@ extension HomeViewController: LocationViewDelegate {
 extension HomeViewController: LocationListViewControllerDelegate {
     func transferCityName(city: String) {
         fetchWeather(city: city)
+        fetchWeatherDays(city: city)
         saveLastCity(city: city)
     }
 }

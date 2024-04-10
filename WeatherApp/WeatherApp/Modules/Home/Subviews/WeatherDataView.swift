@@ -114,6 +114,8 @@ final class WeatherDataView: UIView {
         }
     }
     
+    // MARK: - Public Methods
+    
     func configure(model: WeatherData) {
         let date = Date()
         let dateFormatter = DateFormatter()

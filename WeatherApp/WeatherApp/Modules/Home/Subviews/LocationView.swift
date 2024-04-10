@@ -38,7 +38,8 @@ final class LocationView: UIView {
     
     private lazy var changeLocationButton: UIButton = {
         let changeLocationButton = UIButton()
-        changeLocationButton.setImage(R.image.changeLocationIcon(), for: .normal)
+        changeLocationButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        changeLocationButton.tintColor = .white
         changeLocationButton.addTarget(self, action: #selector(changeLocationButtonTapped), for: .touchUpInside)
         return changeLocationButton
     }()

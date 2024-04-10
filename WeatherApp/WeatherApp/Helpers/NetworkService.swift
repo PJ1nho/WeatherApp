@@ -19,4 +19,16 @@ final class NetworkService {
             }
         }
     }
+    
+    func fetchWeatherDay(city: String, _ completion: @escaping ((Result<List, Error>) -> Void)) {
+        AF.request("http://api.openweathermap.org/data/2.5/forecast?q=\(city)&appid=\(apiKey)",
+                   method: .get).responseDecodable(of: List.self) { response in
+            switch response.result {
+            case .success(let success):
+                completion(.success(List(list: success.list)))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }
