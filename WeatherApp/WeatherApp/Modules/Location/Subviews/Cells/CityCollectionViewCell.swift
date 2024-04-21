@@ -1,6 +1,10 @@
 import UIKit
 import RswiftResources
 
+protocol CityCollectionViewCellDelegate: AnyObject {
+    func transferCellIndex(index: Int?)
+}
+
 class CityCollectionViewCell: UICollectionViewCell {
     
     static let cityCellIdentifier = "CityCell"
@@ -18,10 +22,20 @@ class CityCollectionViewCell: UICollectionViewCell {
         return cityLabel
     }()
     
+    private lazy var deleteButton: UIButton = {
+        let deleteButton = UIButton()
+        deleteButton.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
+        deleteButton.tintColor = R.color.locationListTextColor()
+        deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        return deleteButton
+    }()
+    
+    weak var delegate: CityCollectionViewCellDelegate?
+    var index: Int?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -29,7 +43,7 @@ class CityCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupUI() {
-        addSubviews([imageView, cityLabel])
+        addSubviews([imageView, cityLabel, deleteButton])
         setupConstraints()
     }
     
@@ -42,7 +56,14 @@ class CityCollectionViewCell: UICollectionViewCell {
         
         cityLabel.snp.makeConstraints { make in
             make.leading.equalTo(imageView.snp.trailing).inset(-15)
-            make.top.trailing.bottom.equalToSuperview().inset(20)
+            make.top.bottom.equalToSuperview().inset(20)
+            make.trailing.equalTo(deleteButton.snp.leading).inset(-15)
+        }
+        
+        deleteButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(30)
+            make.centerY.equalToSuperview()
+            make.width.height.equalTo(20)
         }
     }
     
@@ -53,5 +74,9 @@ class CityCollectionViewCell: UICollectionViewCell {
     func getCityName() -> String? {
         guard let cityName = cityLabel.text else { return nil }
         return cityName
+    }
+    
+    @objc private func deleteButtonTapped() {
+        delegate?.transferCellIndex(index: index)
     }
 }
